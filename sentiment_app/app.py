@@ -90,7 +90,9 @@ elif page == "Decision Tree":
 elif page == "ANN":
     import subpages.ann as ann
     ann.render()
-
+elif page == "KNN":
+    import subpages.knn as knn
+    knn.render()
 elif page == "Clustering":
     import subpages.clustering as cl
     cl.render()

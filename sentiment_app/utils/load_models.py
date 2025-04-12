@@ -1,5 +1,16 @@
-import joblib
 import pickle
+import requests
+import tempfile
+from tensorflow.keras.models import load_model
+
+def download_from_gcs(url, suffix=""):
+    """Downloads a file from GCS and returns a temporary file path."""
+    response = requests.get(url)
+    response.raise_for_status()
+    temp = tempfile.NamedTemporaryFile(delete=False, suffix=suffix)
+    temp.write(response.content)
+    temp.close()
+    return temp.name
 
 def load_decision_tree_models():
     try:
@@ -12,18 +23,6 @@ def load_decision_tree_models():
         print(f"Error loading Decision Tree models: {e}")
         return None, None, None, None
 
-
-# def load_naive_bayes():
-#     try:
-#         vectorizer = joblib.load("../naive_bayes/vectorizers/tfidf_vectorizer.pkl")
-#         svd = joblib.load("../decision_tree/vectorizers/svd_tfidf.pkl")
-#         model = joblib.load("../naive_bayes/model/nb_model_tfidf.pkl")
-#         label_encoder = joblib.load("../decision_tree/vectorizers/label_encoder.pkl")
-#         return model, vectorizer,svd,label_encoder
-
-#     except Exception as e:
-#         print(f"Error loading Naive Bayes model models: {e}")
-#         return None, None, None, None
 def load_naive_bayes():
     try:
         print("Loading Naive Bayes models...")
@@ -48,29 +47,33 @@ def load_naive_bayes():
         return None, None, None, None
 
 
-# from tensorflow.keras.models import load_model
+def load_ann():
+    try:
+        print("🔁 Loading ANN full model from GCS...")
 
-# def load_ann():
-#     try:
-#         print("🔁 Loading ANN full model...")
+        # URLs to GCS-hosted files (replace with actual links)
+        tfidf_url = "https://storage.googleapis.com/sentimentann/tfidf_vectorizer.pkl"
+        svd_url = "https://storage.googleapis.com/sentimentann/svd_vectorizer.pkl"
+        label_url = "https://storage.googleapis.com/sentimentann/label_encoder.pkl"
+        model_url = "https://storage.googleapis.com/sentimentann/deep_model.weights.h5"
 
-#         # Load vectorizer, SVD, label encoder
-#         with open("../ANN/tfidf_vectorizer.pkl", "rb") as f:
-#             vectorizer = pickle.load(f)
-#         with open("../ANN/svd_vectorizer.pkl", "rb") as f:
-#             svd = pickle.load(f)
-#         with open("../ANN/label_encoder.pkl", "rb") as f:
-#             label_encoder = pickle.load(f)
+        # Download and load
+        with open(download_from_gcs(tfidf_url), "rb") as f:
+            vectorizer = pickle.load(f)
+        with open(download_from_gcs(svd_url), "rb") as f:
+            svd = pickle.load(f)
+        with open(download_from_gcs(label_url), "rb") as f:
+            label_encoder = pickle.load(f)
 
-#         # Load full model
-#         model = load_model("../ANN/ann_full_model.keras")  # or .h5 if you saved in HDF5 format
-#         print("✅ ANN full model loaded.")
+        model_path = download_from_gcs(model_url, suffix=".keras")
+        model = load_model(model_path)
 
-#         return model, vectorizer, svd, label_encoder
+        print("✅ ANN model and components loaded from GCS.")
+        return model, vectorizer, svd, label_encoder
 
-#     except Exception as e:
-#         print(f"❌ Error loading ANN model: {e}")
-#         return None, None, None, None
+    except Exception as e:
+        print(f"❌ Error loading ANN model: {e}")
+        return None, None, None, None
 
 def load_clusterring():
     try:
