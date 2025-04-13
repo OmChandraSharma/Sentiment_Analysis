@@ -1,7 +1,7 @@
 import pickle
 import requests
 import tempfile
-from tensorflow.keras.models import load_model
+# from tensorflow.keras.models import load_model
 
 def download_from_gcs(url, suffix=""):
     """Downloads a file from GCS and returns a temporary file path."""

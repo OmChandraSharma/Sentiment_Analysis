@@ -11,9 +11,9 @@ from utils.preprocess import clean_text
 # from utils.load_models import load_svm
 
 # ========== API Endpoint ==========
-API_URL = "http://127.0.0.1:8000/predict"  # 🔁 Replace with your deployed URL when ready
 
-# ========== Streamlit Page ==========
+API_URL = "http://127.0.0.1:8000/predict"  # Local server
+
 def render():
     st.title("🚀 Live Sentiment Classification (via API)")
     st.markdown("### Enter your text and get predictions from your deployed models!")
@@ -28,7 +28,10 @@ def render():
         cleaned = clean_text(user_input)
         st.write("✅ **Cleaned Text:**", cleaned)
 
-        for model_name in ["ann"]:  # Add "dt", "nb" if they’re also deployed
+        for model_name in [
+            "ann", "svm", "logistic_regression", "naive_bayes",
+            "knn", "decision_tree", "k_means"
+        ]:
             try:
                 response = requests.post(
                     API_URL,
@@ -38,8 +41,13 @@ def render():
                 if response.status_code == 200:
                     result = response.json()
                     st.markdown(f"#### {model_name.upper()} Prediction")
-                    st.success(f"**Sentiment**: {result['sentiment']}\n\n**Confidence**: {result['confidence'] * 100:.2f}%")
+                    st.success(
+                        f"**Sentiment**: {result['sentiment']}\n\n"
+                        f"**Confidence**: {result['confidence'] * 100:.2f}%"
+                    )
                 else:
                     st.error(f"❌ {model_name.upper()} API error: {response.text}")
             except Exception as e:
                 st.error(f"❌ Failed to call {model_name.upper()} API: {e}")
+
+
