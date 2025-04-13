@@ -1,6 +1,7 @@
 import pickle
 import requests
 import tempfile
+import joblib
 # from tensorflow.keras.models import load_model
 
 def download_from_gcs(url, suffix=""):

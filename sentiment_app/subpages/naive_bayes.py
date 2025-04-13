@@ -17,12 +17,12 @@ def display_model_metrics(title, accuracy, report_data, confusion_img_path):
     st.table(df_report.set_index("Sentiment"))
 
     st.markdown("### 🧩 Confusion Matrix")
-    st.image(confusion_img_path, use_container_width=500)
+    st.image(confusion_img_path, width=500)
 
 # Utility: Display Graph and Inference Box
 def display_graph_with_inference(title, graph_path, default_inference="Write your inference here..."):
     st.markdown(f"### {title}")
-    st.image(graph_path, use_container_width=500)
+    st.image(graph_path, width=500)
     with st.expander("📦 Inference"):
         st.markdown(default_inference)
 
@@ -52,7 +52,7 @@ def render():
     display_model_metrics("Naive Bayes using TF-IDF", 0.8112, report_data2, "../naive_bayes/graphs/confusion-matrix-tfidf.png")
     
     st.markdown("## Accuracy comaparison using Test and Validation")
-    st.image("../naive_bayes/graphs/accuracy_comparision.png", use_container_width=500)
+    st.image("../naive_bayes/graphs/accuracy_comparision.png", width=500)
 
 
     # ============================ Final Observations ============================ #
@@ -86,7 +86,7 @@ def render():
     display_graph_with_inference("Accuracy vs. K ", "../naive_bayes/graphs/selectkbest_kcomparisions.png",s1)
 
     st.markdown("## Confusion Matrix for K = 5000")
-    st.image("../naive_bayes/graphs/confusionmatrix_tf-idf_with_pca.png", use_container_width=500)
+    st.image("../naive_bayes/graphs/confusionmatrix_tf-idf_with_pca.png", width=500)
     # display_graph_with_inference("Accuracy vs. Min Samples Split", "../decision_tree/graphs/min_sample.png",s2)
     # display_graph_with_inference("Accuracy vs. Min Samples Leaf", "../decision_tree/graphs/min_sample_leaf.png",s3)
     # display_graph_with_inference("Accuracy vs. Criterion", "../decision_tree/graphs/criterion.png",s4)

@@ -64,7 +64,7 @@ st.set_page_config(page_title="Sentiment App", layout="wide")
 
 # ---------- SIDEBAR ----------
 st.sidebar.title("Model Explorer")
-page = st.sidebar.radio("Navigate to:", ["Home","Logistic Regression","KNN","Naive Bayes", "Decision Tree", "ANN", "Clustering", "Live Simulation","About"])
+page = st.sidebar.radio("Navigate to:", ["Home","Logistic Regression","KNN","Naive Bayes", "Decision Tree", "ANN", "Clustering","SVM", "Live Simulation","About"])
 
 # ---------- HOME ----------
 if page == "Home":
@@ -100,6 +100,10 @@ elif page == "Clustering":
 elif page == "Live Simulation":
     import subpages.simulation as sm
     sm.render()
+
+elif page == "SVM":
+    import subpages.svm as svm
+    svm.render()
     
 
 # # ---------- PAGE CONFIG (must be first Streamlit command) ----------

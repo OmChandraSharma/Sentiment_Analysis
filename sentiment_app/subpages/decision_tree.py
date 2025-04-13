@@ -17,12 +17,12 @@ def display_model_metrics(title, accuracy, report_data, confusion_img_path):
     st.table(df_report.set_index("Sentiment"))
 
     st.markdown("### 🧩 Confusion Matrix")
-    st.image(confusion_img_path, use_container_width=500)
+    st.image(confusion_img_path, width=500)
 
 # Utility: Display Graph and Inference Box
 def display_graph_with_inference(title, graph_path, default_inference="Write your inference here..."):
     st.markdown(f"### {title}")
-    st.image(graph_path, use_container_width=500)
+    st.image(graph_path, width=500)
     with st.expander("📦 Inference"):
         st.markdown(default_inference)
 
