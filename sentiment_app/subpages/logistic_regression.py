@@ -91,7 +91,7 @@ def render():
 
     display_graph_with_inference(
         "Confusion Matrix - Best TF-IDF Model",
-        "graphs/lr_tfidf.png",
+        "../logistic_regression/graphs/lr_tfidf.png",
         """
         Similar trends as BoW, but Class 1 performance (Neutral) dips more sharply.
         Suggests BoW handles ambiguous cases better.

@@ -9,7 +9,7 @@ def display_graph_with_inference(title, graph_path, inference_text):
         st.markdown(inference_text)
 
 def render():
-    st.title("📘 Sentiment Classification using Linear Regression")
+    st.title("Sentiment Classification using Linear Regression")
 
     st.markdown("""
     This report evaluates the performance of a Linear Regression model applied to sentiment classification.
