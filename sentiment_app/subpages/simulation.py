@@ -18,7 +18,7 @@ def render():
     # Accuracy values for each model
     model_accuracies = {
         'ann': 0.85,
-        'random_forest': 0.88,
+        'decision_tree': 0.88,
         'k_means': 0.60,
         'knn': 0.82,
         'logistic_regression': 0.84,
@@ -50,6 +50,12 @@ def render():
         cleaned = clean_text(user_input)
         st.write("✅ **Cleaned Text:**", cleaned)
 
+        weighted_sum = 0
+        total_weight = 0
+        final_votes = []
+        individual_predictions = []  # Store each model's output for later display
+
+        # First gather all predictions
         for model_name in model_accuracies.keys():
             try:
                 response = requests.post(
@@ -61,13 +67,13 @@ def render():
                     result = response.json()
                     sentiment = result['sentiment'].lower()
                     confidence = result['confidence']
-                    
-                    # Show individual prediction
-                    st.markdown(f"#### {model_name.upper()} Prediction")
-                    st.success(
-                        f"**Sentiment**: {sentiment}\n\n"
-                        f"**Confidence**: {confidence * 100:.2f}%"
-                    )
+
+                    # Store result for later display
+                    individual_predictions.append({
+                        "model": model_name,
+                        "sentiment": sentiment,
+                        "confidence": confidence
+                    })
 
                     # Add to weighted calculation
                     weight = model_accuracies[model_name]
@@ -77,9 +83,15 @@ def render():
                     final_votes.append((model_name, sentiment, weight))
 
                 else:
-                    st.error(f"❌ {model_name.upper()} API error: {response.text}")
+                    individual_predictions.append({
+                        "model": model_name,
+                        "error": response.text
+                    })
             except Exception as e:
-                st.error(f"❌ Failed to call {model_name.upper()} API: {e}")
+                individual_predictions.append({
+                    "model": model_name,
+                    "error": str(e)
+                })
 
         # Final aggregated prediction
         if total_weight > 0:
@@ -94,6 +106,23 @@ def render():
             st.markdown("---")
             st.markdown("## 🧠 Final Aggregated Prediction")
             st.info(f"📊 **Final Sentiment**: `{final_sentiment}` (Weighted by model accuracy)")
+
+        # Now show each model's prediction
+        st.markdown("---")
+        st.markdown("## 📋 Individual Model Predictions")
+        for pred in individual_predictions:
+            model_name = pred["model"]
+            if "error" in pred:
+                st.error(f"❌ {model_name.upper()} API error: {pred['error']}")
+            else:
+                sentiment = pred["sentiment"]
+                confidence = pred["confidence"]
+                st.markdown(f"#### {model_name.upper()} Prediction")
+                st.success(
+                    f"**Sentiment**: {sentiment}\n\n"
+                    f"**Confidence**: {confidence * 100:.2f}%"
+                )
+
     
     # st.title("🚀 Live Sentiment Classification (via API)")
     # st.markdown("### Enter your text and get predictions from your deployed models!")
