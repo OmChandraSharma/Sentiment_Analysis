@@ -64,7 +64,7 @@ st.set_page_config(page_title="Sentiment App", layout="wide")
 
 # ---------- SIDEBAR ----------
 st.sidebar.title("Model Explorer")
-page = st.sidebar.radio("Navigate to:", ["Home","Logistic Regression","KNN","Naive Bayes", "Decision Tree", "ANN", "Clustering","SVM", "Live Simulation","About"])
+page = st.sidebar.radio("Navigate to:", ["Home","Logistic Regression","Linear Regression","KNN","Naive Bayes", "Decision Tree", "ANN", "Clustering","SVM", "Live Simulation","About"])
 
 # ---------- HOME ----------
 if page == "Home":
@@ -82,6 +82,10 @@ elif page == "Naive Bayes":
 elif page == "Linear Regression":
     import subpages.linear_regression as lb
     lb.render()
+
+elif page == "Logistic Regression":
+    import subpages.logistic_regression as lg
+    lg.render()
 
 elif page == "Decision Tree":
     import subpages.decision_tree as dt

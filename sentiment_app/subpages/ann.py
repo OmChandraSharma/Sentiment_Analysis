@@ -5,7 +5,7 @@ import pandas as pd
 def display_graph_with_inference(title, graph_path, inference_text):
     st.markdown(f"### {title}")
     st.image(graph_path, width=750)  # Approx. 75% width depending on screen size
-    with st.expander("📦 Inference"):
+    with st.expander("Inference"):
         st.markdown(inference_text)
 
 def render():
@@ -26,12 +26,12 @@ def render():
         "Support": [159315, 28, 49498]
     }
     df = pd.DataFrame(report_data)
-    st.metric("🎯 Accuracy", value="83.48%")
+    st.metric("Accuracy", value="83.48%")
     st.table(df.set_index("Sentiment"))
 
     # ============================ TF-IDF vs BoW ============================ #
     st.markdown("---")
-    st.markdown("## 📊 Vectorizer Comparison: TF-IDF vs BoW")
+    st.markdown("## Vectorizer Comparison: TF-IDF vs BoW")
 
     v_inference = """
     TF-IDF and BoW showed similar performance, with BoW achieving marginally higher test accuracy. However, the validation 
@@ -43,7 +43,7 @@ def render():
 
     # ============================ SVD Component Analysis ============================ #
     st.markdown("---")
-    st.markdown("## 🧬 SVD Component Selection")
+    st.markdown("## SVD Component Selection")
 
     s1 = """
     Explained variance increases steadily with the number of SVD components and reaches **around 89% at 3000 components**. However, 
@@ -61,7 +61,7 @@ def render():
     display_graph_with_inference("Accuracy vs. SVD Components", "../ANN/graphs/accuracy_extended.png", s2)
     # ============================ ANN Architecture Comparison ============================ #
     st.markdown("---")
-    st.markdown("## 🏗️ Shallow vs Deep ANN")
+    st.markdown("## Shallow vs Deep ANN")
 
     s3 = """
     Deep ANN showed a steady rise in training accuracy and surpassed the shallow network slightly (85.0% vs 84.2%). 
@@ -104,7 +104,7 @@ def render():
     metrics_df = pd.DataFrame(comparison_data)
     st.table(metrics_df.set_index("Metric"))
 
-    with st.expander("📦 Inference"):
+    with st.expander("Inference"):
         st.markdown(s4)
     # ============================ Final Observations ============================ #
     st.markdown("---")
@@ -117,14 +117,14 @@ def render():
     - SVD with ~2400 components offers the best performance-to-dimension ratio.
     - Deep ANN outperforms the shallow version across all key metrics.
 
-    **📌 Recommendation:**
+    **Recommendation:**
     - Use **TF-IDF + SVD + Deep ANN** as the base model.
     - Apply **class rebalancing strategies** (e.g., oversampling, class weights, SMOTE) to improve Neutral class results.
     - Tune dropout, learning rate, and consider using focal loss to improve class fairness and robustness.
     """)
 
     # ============================ Additional Notes ============================ #
-    st.markdown("## 📝 Notes")
+    st.markdown("## Notes")
     st.info("""
     - The macro-average F1-score is low due to poor Neutral class performance.
     - Weighted averages remain high due to dominance of the Negative class.

@@ -8,18 +8,18 @@ def display_side_by_side(title, img_bow, img_tfidf, inference_text):
         st.image(img_bow, caption="BoW")
     with col2:
         st.image(img_tfidf, caption="TF-IDF")
-    with st.expander("📦 Inference"):
+    with st.expander("Inference"):
         st.markdown(inference_text)
 
 def render():
-    st.title("📊 Clustering-based Sentiment Analysis Report")
+    st.title("Clustering-based Sentiment Analysis Report")
     st.markdown("""
     This report presents unsupervised sentiment clustering using **KMeans**, **Agglomerative**, and **DBSCAN** algorithms 
     applied over **BoW** and **TF-IDF** vectorizations.
     """)
 
     # ============ Elbow Curve for KMeans ============ #
-    st.markdown("## 📐 KMeans - Elbow Method")
+    st.markdown("## KMeans - Elbow Method")
     display_side_by_side(
         "Elbow Curve for Optimal K (KMeans)",
         "../clustering/graphs/elbow_kmeans_BoW.png",
@@ -32,7 +32,7 @@ def render():
 
     # ============ KMeans Results ============ #
     st.markdown("---")
-    st.markdown("## 🔵 KMeans Clustering Results")
+    st.markdown("## KMeans Clustering Results")
     display_side_by_side(
         "Confusion Matrix (KMeans)",
         "../clustering/graphs/confusion_KMeans_BoW.png",
@@ -54,7 +54,7 @@ def render():
 
     # ============ Agglomerative Results ============ #
     st.markdown("---")
-    st.markdown("## 🧱 Agglomerative Clustering Results")
+    st.markdown("## Agglomerative Clustering Results")
     display_side_by_side(
         "Confusion Matrix (Agglomerative)",
         "../clustering/graphs/confusion_Agglomerative_BoW.png",
@@ -76,7 +76,7 @@ def render():
 
     # ============ DBSCAN Results ============ #
     st.markdown("---")
-    st.markdown("## 🌌 DBSCAN Clustering Results")
+    st.markdown("## DBSCAN Clustering Results")
     display_side_by_side(
         "Confusion Matrix (DBSCAN)",
         "../clustering/graphs/confusion_DBSCAN_BoW.png",
@@ -98,20 +98,20 @@ def render():
 
     # ============ Final Summary ============ #
     st.markdown("---")
-    st.markdown("## ✅ Final Observations")
+    st.markdown("## Final Observations")
     st.markdown("""
     - All clustering methods failed to detect all sentiment classes due to **heavy class imbalance**.
     - **BoW** consistently performed better than TF-IDF across all models.
     - Clusters were generally centered around the **Negative** class, skewing all metrics.
     - **PCA visualizations** provided better insight into cluster formation than confusion matrices.
 
-    **📌 Recommendations:**
+    **Recommendations:**
     - Balance the dataset or apply class weights for more meaningful cluster assignments.
     - Try advanced vectorization techniques like Word2Vec or BERT for deeper semantic understanding.
     - Semi-supervised approaches could guide clustering more effectively in imbalanced datasets.
     """)
 
-    st.markdown("## 📝 Notes")
+    st.markdown("## Notes")
     st.info("""
     - Don't rely on accuracy or confusion matrix alone in clustering — visualizations are critical.
     - Consider tuning DBSCAN `eps` and `min_samples` to adjust sensitivity.

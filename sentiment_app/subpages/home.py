@@ -145,7 +145,7 @@ def render():
     # -------------------- FOOTER --------------------
     st.markdown("""
     ### 📂 Repository & Contact
-    For source code, documentation, or contributions, visit the [GitHub Repository](https://github.com/thatswhatmeetcoded/Sentiment-Classification.git) .
+    For source code, documentation, or contributions, visit the [GitHub Repository](https://github.com/OmChandraSharma/Sentiment_Analysis.git) .
 
      For feedback, issues, or collaboration opportunities, feel free to connect.
 
