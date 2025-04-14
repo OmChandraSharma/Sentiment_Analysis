@@ -268,7 +268,7 @@ def render():
             "name": "Om Sharma",
             "roll no": "B23CS1048",
             "linkedin": "https://www.linkedin.com/in/om-chandra-sharma-aa583928a/",
-            "image": "photos_members/om_sharma.png"
+            "image": "/sentiment_app/photos_members/om_sharma.png"
         }
     ]
 
