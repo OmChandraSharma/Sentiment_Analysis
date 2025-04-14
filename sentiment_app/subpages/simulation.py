@@ -40,7 +40,7 @@ def render():
     st.title(" Live Sentiment Classification (via API)")
     st.markdown("### Enter your text and get predictions from your deployed models!")
 
-    user_input = st.text_area("📝 Your Text")
+    user_input = st.text_area("Your Text")
 
     if st.button("Predict Sentiment"):
         if not user_input.strip():
@@ -107,8 +107,8 @@ def render():
 
             st.markdown("---")
 
-            st.markdown("## 🧠 Final Aggregated Prediction")
-            st.info(f"📊 **Final Sentiment**: `{final_sentiment}` (Weighted by model accuracy)")
+            st.markdown("## Final Aggregated Prediction")
+            st.info(f"**Final Sentiment**: `{final_sentiment}` (Weighted by model accuracy)")
 
         # Now show each model's prediction
         st.markdown("---")
@@ -116,7 +116,7 @@ def render():
         for pred in individual_predictions:
             model_name = pred["model"]
             if "error" in pred:
-                st.error(f"❌ {model_name.upper()} API error: {pred['error']}")
+                st.error(f" {model_name.upper()} API error: {pred['error']}")
             else:
                 sentiment = pred["sentiment"]
                 confidence = pred["confidence"]

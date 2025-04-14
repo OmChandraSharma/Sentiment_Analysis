@@ -16,7 +16,7 @@ def render():
     """)
 
     # ============================ Final Classification Report ============================ #
-    st.markdown("## 🔍 Final Classification Report (Deep ANN)")
+    st.markdown("## Final Classification Report (Deep ANN)")
 
     report_data = {
         "Sentiment": ["Negative", "Neutral", "Positive"],
