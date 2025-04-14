@@ -244,7 +244,7 @@ def render():
             "name": "Rudra Gupta",
             "roll no": "B23CS1098",
             "linkedin": "https://www.linkedin.com/in/rudra-gupta-8125892ba/",
-            "image": "photos_members/rudra_gupta.png"
+            "image": "/sentiment_app/photos_members/rudra_gupta.png"
         },
         {
             "name": "Aaditya Bansal",
