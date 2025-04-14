@@ -3,7 +3,7 @@ import streamlit as st
 def render():
     # st.set_page_config(page_title="About - Sentiment Analysis App", layout="wide")
 
-    st.title("📘 About This App")
+    st.title("About This App")
     st.markdown("---")
 
     st.markdown("""
@@ -52,7 +52,7 @@ def render():
     ##  Author & Credits
     - **Developed by:** *Rudra Gupta(B23CS1098) , Aaditya Bansal(B23CS1083) , Om Sharma(B23CS1036) , Meet Tilala(B23CS1048) , Anmol Yadav(B23CS1004)*  
     - **Institution:** *Indian Institute of Technology Jodhpur*  
-    - **GitHub:** https://github.com/thatswhatmeetcoded/Sentiment-Classification.git 
+    - **GitHub:** https://github.com/OmChandraSharma/Sentiment_Analysis.git 
  
 
     Special thanks to open-source contributors and datasets used for training and testing.

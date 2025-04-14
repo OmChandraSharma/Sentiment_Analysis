@@ -96,7 +96,7 @@ def render():
     ---
     ##  Model Performance Comparison
 
-    ###  Precision, Recall, and F1 Score
+    ###  Precision, Recall, and F1 Score(Negative)
     
     ---
     """)
@@ -104,9 +104,9 @@ def render():
     # Dummy data (without Accuracy)
     performance_data = pd.DataFrame({
         'Model': ['ANN', 'Random Forest', 'K Means', 'KNN', 'Logistic Regression', 'Linear Regression', 'Naive Bayes', 'SVM'],
-        'Precision': [0.83, 0.87, 0.55, 0.81, 0.83, 0.74, 0.79, 0.85],
-        'Recall': [0.84, 0.86, 0.58, 0.80, 0.82, 0.75, 0.78, 0.84],
-        'F1 Score': [0.84, 0.86, 0.56, 0.80, 0.82, 0.74, 0.78, 0.84]
+        'Precision': [0.83, 0.84, 0.55, 0.81, 0.83, 0.74, 0.79, 0.85],
+        'Recall': [0.84, 0.95, 0.58, 0.80, 0.82, 0.75, 0.78, 0.84],
+        'F1 Score': [0.84, 0.89, 0.56, 0.80, 0.82, 0.74, 0.78, 0.84]
     })
 
     # Set Model as index for heatmap
@@ -128,7 +128,7 @@ def render():
     # Accuracy data for histogram
     accuracy_data = pd.DataFrame({
         'Model': ['ANN', 'Random Forest', 'K Means', 'KNN', 'Logistic Regression', 'Linear Regression', 'Naive Bayes', 'SVM'],
-        'Accuracy': [0.85, 0.88, 0.60, 0.82, 0.84, 0.76, 0.80, 0.86]
+        'Accuracy': [0.85, 0.82, 0.60, 0.82, 0.84, 0.76, 0.80, 0.86]
     })
 
     # Plot histogram
@@ -159,8 +159,8 @@ def render():
 
     # -------------------- FOOTER --------------------
     st.markdown("""
-    ### 📂 Repository & Contact
-    For source code, documentation, or contributions, visit the [GitHub Repository](https://github.com/thatswhatmeetcoded/Sentiment-Classification.git) .
+    ### Repository & Contact
+    For source code, documentation, or contributions, visit the [GitHub Repository](https://github.com/OmChandraSharma/Sentiment_Analysis.git) .
 
      For feedback, issues, or collaboration opportunities, feel free to connect.
 

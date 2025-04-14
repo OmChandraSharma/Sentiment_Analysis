@@ -5,7 +5,7 @@ import pandas as pd
 def display_graph_with_inference(title, graph_path, inference_text):
     st.markdown(f"### {title}")
     st.image(graph_path, width=500)
-    with st.expander("📦 Inference"):
+    with st.expander(" Inference"):
         st.markdown(inference_text)
 
 def render():
@@ -16,7 +16,7 @@ def render():
     """)
 
     # ============================ Classification Reports ============================ #
-    st.markdown("## 🔍 Classification Report: TF-IDF vs BoW with SVM")
+    st.markdown("##  Classification Report: TF-IDF vs BoW with SVM")
 
     tfidf_data = {
         "Class": ["Class 0", "Class 1", "Class 2"],
@@ -37,16 +37,16 @@ def render():
 
     col1, col2 = st.columns(2)
     with col1:
-        st.markdown("### 🔹 SVM with TF-IDF (Accuracy: 56.7%)")
+        st.markdown("### SVM with TF-IDF (Accuracy: 56.7%)")
         st.table(tfidf_df)
 
     with col2:
-        st.markdown("### 🔸 SVM with BoW (Accuracy: 59.6%)")
+        st.markdown("### SVM with BoW (Accuracy: 59.6%)")
         st.table(bow_df)
 
     # ============================ Regularization Strength ============================ #
     st.markdown("---")
-    st.markdown("## ⚖️ Effect of Regularization Strength (C Parameter)")
+    st.markdown("## Effect of Regularization Strength (C Parameter)")
 
     c_inference = """
     - At **low C values** (e.g., 0.1), performance was poor (~38% accuracy) due to underfitting.
@@ -59,7 +59,7 @@ def render():
 
     # ============================ Confusion Matrices ============================ #
     st.markdown("---")
-    st.markdown("## 🔄 Confusion Matrix Analysis")
+    st.markdown("## Confusion Matrix Analysis")
 
     cm_inference_bow= """
     **SVM with BoW:**
@@ -79,7 +79,7 @@ def render():
 
     # ============================ Final Observations ============================ #
     st.markdown("---")
-    st.markdown("## 🧾 Final Observations & Recommendations")
+    st.markdown("## Final Observations & Recommendations")
 
     st.markdown("""
     - **BoW** slightly outperformed **TF-IDF** in overall accuracy (59.6% vs. 56.7%).
@@ -88,7 +88,7 @@ def render():
     - The regularization parameter **C=1.0** yielded the best results for both methods.
     - TF-IDF suffers from **class imbalance bias**, particularly underperforming on Class 2.
 
-    ### 📌 Recommendation:
+    ### Recommendation:
     - Use **BoW** with C=1.0 for more balanced predictions.
     - If focusing on Class 2 reliability, consider **TF-IDF**.
     - Apply **class balancing techniques** (e.g., SMOTE, class weights).
@@ -96,7 +96,7 @@ def render():
     """)
 
     # ============================ Notes ============================ #
-    st.markdown("## 📝 Notes")
+    st.markdown("## Notes")
     st.info("""
     - Small dataset sizes per class may exaggerate precision/recall effects.
     - Monitor class-wise F1 scores, especially when classes are imbalanced.

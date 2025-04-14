@@ -38,18 +38,18 @@ def render():
     weighted_sum = 0
     total_weight = 0
     final_votes = []
-    st.title("🚀 Live Sentiment Classification (via API)")
+    st.title(" Live Sentiment Classification (via API)")
     st.markdown("### Enter your text and get predictions from your deployed models!")
 
-    user_input = st.text_area("📝 Your Text")
+    user_input = st.text_area("Your Text")
 
-    if st.button("🎯 Predict Sentiment"):
+    if st.button("Predict Sentiment"):
         if not user_input.strip():
             st.warning("Please enter some text.")
             return
 
         cleaned = clean_text(user_input)
-        st.write("✅ **Cleaned Text:**", cleaned)
+        st.write("**Cleaned Text:**", cleaned)
 
         weighted_sum = 0
         total_weight = 0
@@ -84,6 +84,7 @@ def render():
                     final_votes.append((model_name, sentiment, weight))
 
                 else:
+
                     individual_predictions.append({
                         "model": model_name,
                         "error": response.text
@@ -93,6 +94,7 @@ def render():
                     "model": model_name,
                     "error": str(e)
                 })
+
 
         # Final aggregated prediction
         if total_weight > 0:
@@ -105,8 +107,9 @@ def render():
                 final_sentiment = "Neutral"
 
             st.markdown("---")
-            st.markdown("## 🧠 Final Aggregated Prediction")
-            st.info(f"📊 **Final Sentiment**: `{final_sentiment}` (Weighted by model accuracy)")
+
+            st.markdown("## Final Aggregated Prediction")
+            st.info(f"**Final Sentiment**: `{final_sentiment}` (Weighted by model accuracy)")
 
         # Now show each model's prediction
         st.markdown("---")
@@ -114,7 +117,7 @@ def render():
         for pred in individual_predictions:
             model_name = pred["model"]
             if "error" in pred:
-                st.error(f"❌ {model_name.upper()} API error: {pred['error']}")
+                st.error(f" {model_name.upper()} API error: {pred['error']}")
             else:
                 sentiment = pred["sentiment"]
                 confidence = pred["confidence"]
@@ -123,6 +126,10 @@ def render():
                     f"**Sentiment**: {sentiment}\n\n"
                     f"**Confidence**: {confidence * 100:.2f}%"
                 )
+
+
+            st.markdown("## Final Aggregated Prediction")
+            st.info(f"**Final Sentiment**: `{final_sentiment}` (Weighted by model accuracy)")
 
     
     # st.title("🚀 Live Sentiment Classification (via API)")

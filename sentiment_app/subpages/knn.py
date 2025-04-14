@@ -5,7 +5,7 @@ import pandas as pd
 def display_graph_with_inference(title, graph_path, inference_text):
     st.markdown(f"### {title}")
     st.image(graph_path, width=750)  # Approx. 75% screen width
-    with st.expander("📦 Inference"):
+    with st.expander("Inference"):
         st.markdown(inference_text)
 
 def render():
@@ -16,7 +16,7 @@ def render():
     """)
 
     # ============================ Final Classification Overview ============================ #
-    st.markdown("## 🔍 KNN Performance Summary")
+    st.markdown("## KNN Performance Summary")
 
     summary_data = {
         "Configuration": [
@@ -32,7 +32,7 @@ def render():
 
     # ============================ Elbow Curve Inference ============================ #
     st.markdown("---")
-    st.markdown("## 📈 Optimal K Selection via Elbow Curves")
+    st.markdown("## Optimal K Selection via Elbow Curves")
 
     elbow_inference = """
     The Elbow Method was used to find the optimal number of neighbors (**k**) for each configuration. The model accuracy improves up to **k ≈ 26**, after which gains are negligible or decline.
@@ -52,7 +52,7 @@ def render():
 
     # ============================ Confusion Matrix Observations ============================ #
     st.markdown("---")
-    st.markdown("## 🧩 Confusion Matrix Analysis")
+    st.markdown("## Confusion Matrix Analysis")
 
     cm_inference = """
     Despite different configurations, the model shows **consistent accuracy (~78%–80%)** across all setups. However:
@@ -86,13 +86,13 @@ def render():
     - **Severe class imbalance** leads to 0% recall for Neutral class.
     - KNN is not robust to rare classes and performs poorly in imbalanced settings.
 
-    **📌 Recommendation:**
+    **Recommendation:**
     - KNN may be used as a benchmark but is **not ideal for production**.
     - Consider advanced classifiers with built-in class balancing (e.g., Random Forest, ANN with class weights).
     - Explore **SMOTE or oversampling** for minority class (Neutral).
     """)
 
-    st.markdown("## 📝 Notes")
+    st.markdown("## Notes")
     st.info("""
     - All configurations failed to predict the Neutral class due to data imbalance.
     - KNN’s non-parametric nature limits its ability to handle such skewed class distributions.

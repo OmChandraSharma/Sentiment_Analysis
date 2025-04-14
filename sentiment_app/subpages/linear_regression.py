@@ -1,25 +1,90 @@
 import streamlit as st
-# from utils.load_models import load_decision_tree_models
-from utils.preprocess import clean_text
-from utils.model_analysis import model_analysis_page
+import pandas as pd
+
+# Utility to display graph with inference
+def display_graph_with_inference(title, graph_path, inference_text):
+    st.markdown(f"### {title}")
+    st.image(graph_path, width=750)
+    with st.expander("Inference"):
+        st.markdown(inference_text)
 
 def render():
-    # model, vectorizer, svd, label_encoder = load_decision_tree_models()
+    st.title("Sentiment Classification using Linear Regression")
 
-    model_analysis_page("Decision Tree", 85.2, 0.86, 0.83, 0.84,
-        "Captures patterns well, interpretable, might overfit on small data.")
+    st.markdown("""
+    This report evaluates the performance of a Linear Regression model applied to sentiment classification.
+    Although linear regression is generally used for regression tasks, we simulate classification by rounding and clipping predictions 
+    to the nearest valid sentiment class. The goal is to explore its effectiveness for text-based sentiment analysis.
+    """)
 
-    # st.subheader("📈 Performance vs. Hyperparameters")
+    # ============================ Final Regression Metrics ============================ #
+    st.markdown("## Final Evaluation Metrics")
 
-    # st.markdown("### Accuracy vs. Max Depth ")
-    # st.image("../decision_tree/graphs/max_depth.png", use_container_width=True)
+    metrics = {
+        "Mean Squared Error (MSE)": "0.3496",
+        "R² Score": "0.5167",
+        "Approximate Classification Accuracy": "68.42%"
+    }
 
-    # st.markdown("### Accuracy vs. Min Samples Split ")
-    # st.image("../decision_tree/graphs/min_sample.png", use_container_width=True)
+    for k, v in metrics.items():
+        st.metric(label=k, value=v)
 
-    # st.markdown("### Accuracy vs. Min Samples Leaf")
-    # st.image("../decision_tree/graphs/min_sample_leaf.png", use_container_width=True)
+    # ============================ Visualizations ============================ #
+    st.markdown("---")
+    st.markdown("## Evaluation Visuals")
 
-    # st.markdown("### Accuracy vs. Criterion")
-    # st.image("../decision_tree/graphs/criterion.png", use_container_width=True)
+    # Actual vs Predicted
+    scatter_inference = """
+    The scatter plot shows how predicted sentiment values (after regression) align with the actual encoded sentiment labels.
+    A tighter cluster along the diagonal would indicate better predictive performance. In this case, a moderate alignment is observed.
+    """
+    display_graph_with_inference(
+        "Actual vs Predicted Sentiment",
+        "../linear_regression/plots/actual_vs_predicted.png",
+        scatter_inference
+    )
 
+    # Residual Histogram
+    residual_hist_inference = """
+    This histogram visualizes the distribution of residuals (errors between predicted and actual sentiment).
+    Most residuals are centered around zero, which indicates that while there are outliers, the model is making reasonable predictions.
+    """
+    display_graph_with_inference(
+        "Residuals Histogram",
+        "../linear_regression/plots/residuals_histogram.png",
+        residual_hist_inference
+    )
+
+    # Residuals over Index
+    residual_line_inference = """
+    The residuals plotted across sample indices help reveal any patterns or biases in prediction.
+    The absence of systematic trends suggests the model is fairly unbiased, although variance exists.
+    """
+    display_graph_with_inference(
+        "Residuals Across Samples",
+        "../linear_regression/plots/residuals_lineplot.png",
+        residual_line_inference
+    )
+
+    # ============================ Final Observations ============================ #
+    st.markdown("---")
+    st.markdown("## Final Observations & Recommendations")
+
+    st.markdown("""
+    - Linear Regression is not a conventional model for classification tasks but can be adapted through rounding techniques.
+    - The **MSE** and **R² score** show a moderate fit, indicating partial explanatory power over sentiment variation.
+    - An approximate accuracy of **68.42%** was achieved — a fair baseline, but not optimal.
+    - **Recommendation**: For production-level tasks, consider **classification models** like **Logistic Regression**, **SVM**, or **Random Forest**.
+    - These models inherently support categorical targets and yield better interpretability, calibration, and performance.
+    """)
+
+    st.markdown("## Notes")
+    st.info("""
+    - The model may underperform in edge cases due to the continuous nature of predictions.
+    - Future experiments could compare regression models against classification baselines to assess performance trade-offs.
+    - Incorporating class balancing, dimensionality reduction, or ensemble methods may improve future results.
+    """)
+
+# Run the report if this is the main script
+if __name__ == "__main__":
+    render()
