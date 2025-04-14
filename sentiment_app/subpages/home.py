@@ -244,31 +244,31 @@ def render():
             "name": "Rudra Gupta",
             "roll no": "B23CS1098",
             "linkedin": "https://www.linkedin.com/in/rudra-gupta-8125892ba/",
-            "image": "./photos_members/rudra_gupta.png"
+            "image": "photos_members/rudra_gupta.png"
         },
         {
             "name": "Aaditya Bansal",
             "roll no": "B23CS1083",
             "linkedin": "https://www.linkedin.com/in/aaditya-bansal-665a791b2/",
-            "image": "./photos_members/aaditya_basnal.png"
+            "image": "photos_members/aaditya_basnal.png"
         },
         {
             "name": "Anmol Yadav",
             "roll no": "B23CS1004",
             "linkedin": "https://www.linkedin.com/in/anmol-yadav-131a1528a/",
-            "image": "./photos_members/anmol_yadav.png"
+            "image": "photos_members/anmol_yadav.png"
         },
         {
             "name": "Meet Tilala",
             "roll no": "B23CS1036",
             "linkedin": "https://www.linkedin.com/in/meet-tilala97/",
-            "image": "./photos_members/meet_tilala.png"
+            "image": "photos_members/meet_tilala.png"
         },
         {
             "name": "Om Sharma",
             "roll no": "B23CS1048",
             "linkedin": "https://www.linkedin.com/in/om-chandra-sharma-aa583928a/",
-            "image": "./photos_members/om_sharma.png"
+            "image": "photos_members/om_sharma.png"
         }
     ]
 
