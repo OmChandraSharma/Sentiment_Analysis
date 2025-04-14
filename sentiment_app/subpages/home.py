@@ -70,23 +70,66 @@ def render():
     st.info("All models were trained using identical feature extraction methods for a fair performance comparison.")
 
     # -------------------- PLACEHOLDER FOR COMPARISONS --------------------
+    import streamlit as st
+    import pandas as pd
+    import matplotlib.pyplot as plt
+    import seaborn as sns
+
+    # st.set_page_config(layout="wide")
+
     st.markdown("""
     ---
     ##  Model Performance Comparison
 
-    ###  Accuracy, Precision, Recall, and F1 Score
-    > *(Insert bar chart or table comparing performance across models here)*
+    ###  Precision, Recall, and F1 Score
+    
+    ---
+    """)
 
-    ###  Confusion Matrix Heatmaps
-    > *(Insert heatmap visuals for each model's predictions)*
+    # Dummy data (without Accuracy)
+    performance_data = pd.DataFrame({
+        'Model': ['ANN', 'Random Forest', 'K Means', 'KNN', 'Logistic Regression', 'Linear Regression', 'Naive Bayes', 'SVM'],
+        'Precision': [0.83, 0.87, 0.55, 0.81, 0.83, 0.74, 0.79, 0.85],
+        'Recall': [0.84, 0.86, 0.58, 0.80, 0.82, 0.75, 0.78, 0.84],
+        'F1 Score': [0.84, 0.86, 0.56, 0.80, 0.82, 0.74, 0.78, 0.84]
+    })
 
-    ###  Training Time vs Accuracy
-    > *(Insert scatter plot or line chart here)*
+    # Set Model as index for heatmap
+    heatmap_data = performance_data.set_index('Model')
 
-    All evaluation metrics are based on standard sentiment analysis datasets and cross-validation folds.
+    # Plot heatmap
+    fig, ax = plt.subplots(figsize=(10, 6))
+    sns.heatmap(heatmap_data, annot=True, cmap="YlGnBu", fmt=".2f", linewidths=0.5, cbar=True, ax=ax)
+    plt.title("Model Performance Heatmap (Precision, Recall, F1 Score)")
+    st.pyplot(fig)
+
+    st.markdown("""
+    ---
+    ###  Accuracy Distribution 
 
     ---
     """)
+
+    # Accuracy data for histogram
+    accuracy_data = pd.DataFrame({
+        'Model': ['ANN', 'Random Forest', 'K Means', 'KNN', 'Logistic Regression', 'Linear Regression', 'Naive Bayes', 'SVM'],
+        'Accuracy': [0.85, 0.88, 0.60, 0.82, 0.84, 0.76, 0.80, 0.86]
+    })
+
+    # Plot histogram
+    fig2, ax2 = plt.subplots(figsize=(10, 6))
+    sns.barplot(x='Model', y='Accuracy', data=accuracy_data, palette='Oranges', ax=ax2)
+    plt.title("Model vs Accuracy (Histogram)")
+    plt.ylim(0, 1)
+    plt.grid(axis='y', linestyle='--', alpha=0.5)
+    plt.xticks(rotation=30) 
+    st.pyplot(fig2)
+
+    # st.markdown("""
+    # All evaluation metrics are based on standard sentiment analysis datasets and cross-validation folds.
+    # ---
+    # """)
+
 
     # -------------------- SIMULATOR CTA --------------------
     st.markdown("""
