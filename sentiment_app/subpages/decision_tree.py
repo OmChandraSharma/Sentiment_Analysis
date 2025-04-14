@@ -6,30 +6,30 @@ import pandas as pd
 
 # Utility: Display Accuracy and Classification Report
 def display_model_metrics(title, accuracy, report_data, confusion_img_path):
-    st.markdown(f"## 🔍 {title}")
+    st.markdown(f"## {title}")
     
     col1, col2 = st.columns([1, 4])
     with col1:
-        st.metric(label="🎯 Accuracy", value=f"{accuracy:.2%}")
+        st.metric(label=" Accuracy", value=f"{accuracy:.2%}")
     
     df_report = pd.DataFrame(report_data)
-    st.markdown("### 📊 Classification Report")
+    st.markdown("### Classification Report")
     st.table(df_report.set_index("Sentiment"))
 
-    st.markdown("### 🧩 Confusion Matrix")
+    st.markdown("### Confusion Matrix")
     st.image(confusion_img_path, width=500)
 
 # Utility: Display Graph and Inference Box
 def display_graph_with_inference(title, graph_path, default_inference="Write your inference here..."):
     st.markdown(f"### {title}")
     st.image(graph_path, width=500)
-    with st.expander("📦 Inference"):
+    with st.expander(" Inference"):
         st.markdown(default_inference)
 
 # Main Render Function
 def render():
     model, vectorizer, svd, label_encoder = load_decision_tree_models()
-    st.title("📌 Decision Tree & Random Forest Analysis Report")
+    st.title(" Decision Tree & Random Forest Analysis Report")
 
     # Report Data (reused in all models for now)
     report_data1 = {
@@ -60,6 +60,55 @@ def render():
         
     }
 
+    report_dataa = {
+        "Sentiment": ["Negative", "Postive", "Neutral"],
+        "Precision": [0.84, 0.00, 0.52],
+        "Recall": [0.86, 0.00, 0.47],
+        "F1-Score": [0.85, 0.00, 0.50]
+    }
+    report_datab = {
+        "Sentiment": ["Negative", "Postive", "Neutral"],
+        "Precision": [0.84, 0.00, 0.52],
+        "Recall": [0.86, 0.00, 0.49],
+        "F1-Score": [0.85, 0.00, 0.50]
+        
+    }
+    report_datac = {
+        "Sentiment": ["Negative", "Postive", "Neutral"],
+        "Precision": [0.84, 0.00, 0.70],
+        "Recall": [0.95, 0.00, 0.42],
+        "F1-Score": [0.89, 0.00, 0.52]
+    
+    }  
+    report_datad = {
+        "Sentiment": ["Negative", "Postive", "Neutral"],
+        "Precision": [0.85, 0.00, 0.64],
+        "Recall": [0.91, 0.00, 0.50],
+        "F1-Score": [0.88, 0.00, 0.56]
+        
+    }
+    
+
+    st.title("Without SVD Training")
+    display_model_metrics("Decision Tree using TF-IDF",0.7719 , report_dataa, "../decision_tree/graphs/decision_tree_tfidf.JPG")
+    display_model_metrics("Decision Tree using BOW",0.7706 , report_datab, "../decision_tree/graphs/decision_tree_bow.JPG")
+    display_model_metrics("Random Forest using TF-IDF",0.8201 , report_datac, "../decision_tree/graphs/random_forest_tfidf.JPG")
+    display_model_metrics("Random Forest using BOW", 0.8157, report_datad, "../decision_tree/graphs/random_forest_bow.JPG")
+
+    st.markdown("---")
+    # st.markdown("##  Final Observations & Model Recommendation")
+    # st.markdown("""
+    # Bag-of-Words (BoW) features outperform TF-IDF in this sentiment classification task, 
+    # especially when paired with a Random Forest classifier. This is likely due to BoW's ability 
+    # to retain frequent sentiment-related words like *good, bad, love,* etc., which TF-IDF down-weights.
+
+    # Random Forest performs better than Decision Trees due to ensemble averaging, reducing overfitting.
+
+    # **Best Model: BoW + Random Forest**
+    # """)
+
+    st.title("With SVD Training")
+
     # ============================ Models & Reports ============================ #
     display_model_metrics("Decision Tree using TF-IDF", 0.5769230769230769, report_data1, "../decision_tree/graphs/dt_tfidf.png")
     display_model_metrics("Decision Tree using BOW", 0.5769230769230769, report_data2, "../decision_tree/graphs/dt_bow.png")
@@ -67,8 +116,8 @@ def render():
     display_model_metrics("Random Forest using BOW", 0.6826923076923077, report_data4, "../decision_tree/graphs/rf_bow.png")
 
     # ============================ Final Observations ============================ #
-    st.markdown("---")
-    st.markdown("## 🧠 Final Observations & Model Recommendation")
+    # st.markdown("---")
+    st.markdown("## Observations ")
     st.markdown("""
     Bag-of-Words (BoW) features outperform TF-IDF in this sentiment classification task, 
     especially when paired with a Random Forest classifier. This is likely due to BoW's ability 
@@ -76,7 +125,7 @@ def render():
 
     Random Forest performs better than Decision Trees due to ensemble averaging, reducing overfitting.
 
-    **📌 Best Model: BoW + Random Forest**
+    
     """)
     
     # Optional model insights box
@@ -89,7 +138,7 @@ def render():
 
     # ============================ Hyperparameter Plots ============================ #
     st.markdown("---")
-    st.markdown("## 📈 Performance vs. Hyperparameters (Decision Tree)")
+    st.markdown("##  Performance vs. Hyperparameters (Decision Tree)")
     
     s1 = "As depth increases, both feature sets benefit from greater model complexity. However, BoW consistently outperforms TF-IDF — particularly beyond the optimal depth — suggesting that raw term frequencies preserve important sentiment indicators that TF-IDF suppresses. The performance plateau beyond depth 10 indicates diminishing returns, with potential risks of overfitting at higher depths. Therefore, a max depth of 10–15 appears optimal for generalization."
 
@@ -104,4 +153,17 @@ def render():
     display_graph_with_inference("Accuracy vs. Min Samples Split", "../decision_tree/graphs/min_sample.png",s2)
     display_graph_with_inference("Accuracy vs. Min Samples Leaf", "../decision_tree/graphs/min_sample_leaf.png",s3)
     display_graph_with_inference("Accuracy vs. Criterion", "../decision_tree/graphs/criterion.png",s4)
+    
+    st.markdown("---")
+    st.markdown("## Why the Model Performs Better Without SVD")
+    st.markdown("""
+    Applying SVD reduces the feature space to only 100 components, significantly limiting the model's ability to capture nuanced textual patterns. This drop in performance is expected and can be explained by:
+                
+    Information Loss: Truncating the feature space compresses meaningful distinctions between sentiments, especially in sparse and context-dependent data like text.
+                
+    Over-compression: For tree-based models, which are naturally non-linear, reducing features can over-regularize the input, removing important split candidates.
+                
+    Sparse Feature Strength: BoW and TF-IDF in full form provide thousands of distinct features, capturing rich details; SVD compromises this advantage
 
+    """)
+    
