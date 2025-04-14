@@ -244,7 +244,7 @@ def render():
             "name": "Rudra Gupta",
             "roll no": "B23CS1098",
             "linkedin": "https://www.linkedin.com/in/rudra-gupta-8125892ba/",
-            "image": "/sentiment_app/photos_members/rudra_gupta.png"
+            "image": "photos_members/rudra_gupta.png"
         },
         {
             "name": "Aaditya Bansal",
@@ -268,7 +268,7 @@ def render():
             "name": "Om Sharma",
             "roll no": "B23CS1048",
             "linkedin": "https://www.linkedin.com/in/om-chandra-sharma-aa583928a/",
-            "image": "/sentiment_app/photos_members/om_sharma.png"
+            "image": "photos_members/om_sharma.png"
         }
     ]
 
