@@ -11,8 +11,9 @@ from utils.preprocess import clean_text
 # from utils.load_models import load_svm
 
 # ========== API Endpoint ==========
+API_URL = "https://inference-api-123471747335.asia-south1.run.app/predict"
 
-API_URL = "http://127.0.0.1:8000/predict"  # Local server
+
 
 def render():
     # Accuracy values for each model

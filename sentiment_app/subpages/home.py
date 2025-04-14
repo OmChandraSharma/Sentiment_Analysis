@@ -5,7 +5,7 @@ from utils.model_analysis import model_analysis_page
 import pandas as pd
 
 # def render():
-#     # st.title("📊 Sentiment Analysis Models Overview")
+#     # st.title("Sentiment Analysis Models Overview")
 #     # st.write("""
 #     #     Welcome to the Sentiment Analysis Dashboard. Here you can:
 #     #     - View model performances
@@ -16,7 +16,22 @@ import pandas as pd
 
 def render():
     import streamlit as st
+    # -------------------- TITLE & LINKS --------------------
+    st.markdown("""
+    # Sentiment Analysis Using Classical Machine Learning
 
+    <div style="display: flex; gap: 1rem; margin-top: 0.5rem;">
+        <a href="https://www.kaggle.com/datasets/abhi8923shriv/sentiment-analysis-dataset/data" target="_blank">
+            <strong>Kaggle Dataset</strong>
+        </a> |
+        <a href="https://github.com/OmChandraSharma/Sentiment_Analysis" target="_blank">
+            <strong>GitHub Repository</strong>
+        </a> |
+        <a href="https://youtu.be/KabCzsSiWME" target="_blank">
+            <strong>Demo Video</strong>
+        </a>
+    </div>
+    """, unsafe_allow_html=True)
     # Optional: Set page config
     # st.set_page_config(page_title="Sentiment Analysis Project", layout="wide")
 
