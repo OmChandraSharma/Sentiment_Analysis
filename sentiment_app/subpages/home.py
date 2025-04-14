@@ -250,7 +250,7 @@ def render():
             "name": "Aaditya Bansal",
             "roll no": "B23CS1083",
             "linkedin": "https://www.linkedin.com/in/aaditya-bansal-665a791b2/",
-            "image": "photos_members/aaditya_basnal.png"
+            "image": "https://github.com/OmChandraSharma/Sentiment_Analysis/blob/main/sentiment_app/photos_members/aaditya_basnal.png"
         },
         {
             "name": "Anmol Yadav",
