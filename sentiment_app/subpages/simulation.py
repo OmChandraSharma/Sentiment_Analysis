@@ -84,7 +84,6 @@ def render():
                     final_votes.append((model_name, sentiment, weight))
 
                 else:
-
                     individual_predictions.append({
                         "model": model_name,
                         "error": response.text
@@ -95,20 +94,21 @@ def render():
                     "error": str(e)
                 })
 
-
         # Final aggregated prediction
         if total_weight > 0:
             final_score = weighted_sum / total_weight
             if final_score > 0:
                 final_sentiment = "Positive"
+                color = "green"
             elif final_score < 0:
                 final_sentiment = "Negative"
+                color = "red"
             else:
                 final_sentiment = "Neutral"
+                color = "gray"
 
             st.markdown("---")
-
-            st.markdown("## Final Aggregated Prediction")
+            st.markdown(f"<h2 style='color:{color};'>🚀 Final Aggregated Prediction</h2>", unsafe_allow_html=True)
             st.info(f"**Final Sentiment**: `{final_sentiment}` (Weighted by model accuracy)")
 
         # Now show each model's prediction
@@ -121,16 +121,21 @@ def render():
             else:
                 sentiment = pred["sentiment"]
                 confidence = pred["confidence"]
+                if sentiment == "positive":
+                    color = "green"
+                elif sentiment == "negative":
+                    color = "red"
+                else:
+                    color = "gray"
+
                 st.markdown(f"#### {model_name.upper()} Prediction")
-                st.success(
-                    f"**Sentiment**: {sentiment}\n\n"
-                    f"**Confidence**: {confidence * 100:.2f}%"
+                st.markdown(
+                    f"<div style='padding: 10px; background-color:{color}; color:white; border-radius:10px;'>"
+                    f"<strong>Sentiment:</strong> {sentiment.capitalize()}<br>"
+                    f"<strong>Confidence:</strong> {confidence * 100:.2f}%"
+                    f"</div>",
+                    unsafe_allow_html=True
                 )
-
-
-            st.markdown("## Final Aggregated Prediction")
-            st.info(f"**Final Sentiment**: `{final_sentiment}` (Weighted by model accuracy)")
-
     
     # st.title("🚀 Live Sentiment Classification (via API)")
     # st.markdown("### Enter your text and get predictions from your deployed models!")
