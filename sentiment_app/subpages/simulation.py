@@ -35,10 +35,7 @@ def render():
         'negative': -1
     }
 
-    weighted_sum = 0
-    total_weight = 0
-    final_votes = []
-    st.title(" Live Sentiment Classification (via API)")
+    st.title("Live Sentiment Classification (via API)")
     st.markdown("### Enter your text and get predictions from your deployed models!")
 
     user_input = st.text_area("Your Text")
@@ -53,10 +50,8 @@ def render():
 
         weighted_sum = 0
         total_weight = 0
-        final_votes = []
-        individual_predictions = []  # Store each model's output for later display
+        individual_predictions = []
 
-        # First gather all predictions
         for model_name in model_accuracies.keys():
             try:
                 response = requests.post(
@@ -69,20 +64,16 @@ def render():
                     sentiment = result['sentiment'].lower()
                     confidence = result['confidence']
 
-                    # Store result for later display
                     individual_predictions.append({
                         "model": model_name,
                         "sentiment": sentiment,
                         "confidence": confidence
                     })
 
-                    # Add to weighted calculation
                     weight = model_accuracies[model_name]
                     score = sentiment_map.get(sentiment, 0)
                     weighted_sum += score * weight
                     total_weight += weight
-                    final_votes.append((model_name, sentiment, weight))
-
                 else:
                     individual_predictions.append({
                         "model": model_name,
@@ -99,77 +90,48 @@ def render():
             final_score = weighted_sum / total_weight
             if final_score > 0:
                 final_sentiment = "Positive"
-                color = "green"
+                bg_color = "rgba(0, 128, 0, 0.15)"
             elif final_score < 0:
                 final_sentiment = "Negative"
-                color = "red"
+                bg_color = "rgba(255, 0, 0, 0.15)"
             else:
                 final_sentiment = "Neutral"
-                color = "gray"
+                bg_color = "rgba(128, 128, 128, 0.15)"
 
             st.markdown("---")
-            st.markdown(f"<h2 style='color:{color};'>🚀 Final Aggregated Prediction</h2>", unsafe_allow_html=True)
-            st.info(f"**Final Sentiment**: `{final_sentiment}` (Weighted by model accuracy)")
+            st.markdown(f"<h2>Final Aggregated Prediction</h2>", unsafe_allow_html=True)
+            st.markdown(
+                f"<div style='padding: 15px; background-color:{bg_color}; border-radius:10px; font-size:18px;'>"
+                f"<strong style='color:white;'>Final Sentiment:</strong> {final_sentiment} (Weighted by model accuracy)"
+                f"</div>",
+                unsafe_allow_html=True
+            )
 
-        # Now show each model's prediction
+        # Show each model's prediction
         st.markdown("---")
-        st.markdown("## 📋 Individual Model Predictions")
+        st.markdown("## Individual Model Predictions")
         for pred in individual_predictions:
             model_name = pred["model"]
             if "error" in pred:
-                st.error(f" {model_name.upper()} API error: {pred['error']}")
+                st.error(f"{model_name.upper()} API error: {pred['error']}")
             else:
                 sentiment = pred["sentiment"]
                 confidence = pred["confidence"]
+
                 if sentiment == "positive":
-                    color = "green"
+                    bg_color = "rgba(0, 128, 0, 0.15)"
                 elif sentiment == "negative":
-                    color = "red"
+                    bg_color = "rgba(255, 0, 0, 0.15)"
                 else:
-                    color = "gray"
+                    bg_color = "rgba(128, 128, 128, 0.15)"
 
                 st.markdown(f"#### {model_name.upper()} Prediction")
                 st.markdown(
-                    f"<div style='padding: 10px; background-color:{color}; color:white; border-radius:10px;'>"
-                    f"<strong>Sentiment:</strong> {sentiment.capitalize()}<br>"
-                    f"<strong>Confidence:</strong> {confidence * 100:.2f}%"
+                    f"<div style='padding: 10px; background-color:{bg_color}; border-radius:10px;'>"
+                    f"<strong style='color:white;'>Sentiment:</strong> {sentiment.capitalize()}<br>"
+                    f"<strong style='color:white;'>Confidence:</strong> {confidence * 100:.2f}%"
                     f"</div>",
                     unsafe_allow_html=True
                 )
-    
-    # st.title("🚀 Live Sentiment Classification (via API)")
-    # st.markdown("### Enter your text and get predictions from your deployed models!")
-
-    # user_input = st.text_area("📝 Your Text")
-
-    # if st.button("🎯 Predict Sentiment"):
-    #     if not user_input.strip():
-    #         st.warning("Please enter some text.")
-    #         return
-
-    #     cleaned = clean_text(user_input)
-    #     st.write("✅ **Cleaned Text:**", cleaned)
-    
-    #     for model_name in [
-    #         "ann", "svm", "logistic_regression", "naive_bayes",
-    #         "knn", "decision_tree", "k_means"
-    #     ]:
-    #         try:
-    #             response = requests.post(
-    #                 API_URL,
-    #                 headers={"Content-Type": "application/json"},
-    #                 data=json.dumps({"text": user_input, "model": model_name})
-    #             )
-    #             if response.status_code == 200:
-    #                 result = response.json()
-    #                 st.markdown(f"#### {model_name.upper()} Prediction")
-    #                 st.success(
-    #                     f"**Sentiment**: {result['sentiment']}\n\n"
-    #                     f"**Confidence**: {result['confidence'] * 100:.2f}%"
-    #                 )
-    #             else:
-    #                 st.error(f"❌ {model_name.upper()} API error: {response.text}")
-    #         except Exception as e:
-    #             st.error(f"❌ Failed to call {model_name.upper()} API: {e}")
 
 
