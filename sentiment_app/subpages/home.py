@@ -101,7 +101,7 @@ def render():
     ---
     """)
 
-    # Dummy data (without Accuracy)
+    # Dummy performance data
     performance_data = pd.DataFrame({
         'Model': ['ANN', 'Random Forest', 'K Means', 'KNN', 'Logistic Regression', 'Linear Regression', 'Naive Bayes', 'SVM'],
         'Precision': [0.83, 0.84, 0.55, 0.81, 0.83, 0.74, 0.79, 0.85],
@@ -109,36 +109,42 @@ def render():
         'F1 Score': [0.84, 0.89, 0.56, 0.80, 0.82, 0.74, 0.78, 0.84]
     })
 
-    # Set Model as index for heatmap
     heatmap_data = performance_data.set_index('Model')
 
-    # Plot heatmap
-    fig, ax = plt.subplots(figsize=(10, 6))
-    sns.heatmap(heatmap_data, annot=True, cmap="YlGnBu", fmt=".2f", linewidths=0.5, cbar=True, ax=ax)
-    plt.title("Model Performance Heatmap (Precision, Recall, F1 Score)")
-    st.pyplot(fig)
+    # Align heatmap to left with extra width
+    col1, col2 = st.columns([2, 1])  # Wider left column
+    with col1:
+        fig, ax = plt.subplots(figsize=(8, 4.5))
+        sns.heatmap(heatmap_data, annot=True, cmap="YlGnBu", fmt=".2f",
+                    linewidths=0.5, cbar=True, ax=ax)
+        plt.title("Model Performance Heatmap (Precision, Recall, F1 Score)")
+        st.pyplot(fig, bbox_inches='tight')
 
+    # Accuracy heading (before plot)
     st.markdown("""
     ---
-    ###  Accuracy Distribution 
-
+    ### Accuracy Distribution
     ---
     """)
 
-    # Accuracy data for histogram
+    # Accuracy data
     accuracy_data = pd.DataFrame({
         'Model': ['ANN', 'Random Forest', 'K Means', 'KNN', 'Logistic Regression', 'Linear Regression', 'Naive Bayes', 'SVM'],
         'Accuracy': [0.85, 0.82, 0.60, 0.82, 0.84, 0.76, 0.80, 0.86]
     })
 
-    # Plot histogram
-    fig2, ax2 = plt.subplots(figsize=(10, 6))
-    sns.barplot(x='Model', y='Accuracy', data=accuracy_data, palette='Oranges', ax=ax2)
-    plt.title("Model vs Accuracy (Histogram)")
-    plt.ylim(0, 1)
-    plt.grid(axis='y', linestyle='--', alpha=0.5)
-    plt.xticks(rotation=30) 
-    st.pyplot(fig2)
+    # Align histogram to left with extra width
+    col3, col4 = st.columns([2, 1])
+    with col3:
+        fig2, ax2 = plt.subplots(figsize=(8, 4.5))
+        sns.barplot(x='Model', y='Accuracy', data=accuracy_data, palette='Oranges', ax=ax2)
+        plt.title("Model vs Accuracy (Histogram)")
+        plt.ylim(0, 1)
+        plt.grid(axis='y', linestyle='--', alpha=0.5)
+        plt.xticks(rotation=30) 
+        st.pyplot(fig2, bbox_inches='tight')
+
+
 
     # st.markdown("""
     # All evaluation metrics are based on standard sentiment analysis datasets and cross-validation folds.
