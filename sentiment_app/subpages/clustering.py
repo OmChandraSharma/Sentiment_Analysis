@@ -22,8 +22,8 @@ def render():
     st.markdown("## KMeans - Elbow Method")
     display_side_by_side(
         "Elbow Curve for Optimal K (KMeans)",
-        "../clustering/graphs/elbow_kmeans_BoW.png",
-        "../clustering/graphs/elbow_kmeans_TF-IDF.png",
+        "https://storage.googleapis.com/sentimentann/graphs/elbow_kmeans_BoW.png",
+        "https://storage.googleapis.com/sentimentann/graphs/elbow_kmeans_TF-IDF.png",
         """
         The **elbow point** for both BoW and TF-IDF stabilizes at **k=2**, indicating an optimal number of clusters.
         BoW has a sharper drop-off suggesting better defined clusters.
@@ -35,8 +35,8 @@ def render():
     st.markdown("## KMeans Clustering Results")
     display_side_by_side(
         "Confusion Matrix (KMeans)",
-        "../clustering/graphs/confusion_KMeans_BoW.png",
-        "../clustering/graphs/confusion_KMeans_TF-IDF.png",
+        "https://storage.googleapis.com/sentimentann/graphs/confusion_KMeans_BoW.png",
+        "https://storage.googleapis.com/sentimentann/graphs/confusion_KMeans_TF-IDF.png",
         """
         KMeans predicted only one dominant class (Negative) in both vectorizers.
         TF-IDF had slightly more dispersion but still failed to separate sentiments properly.
@@ -44,8 +44,8 @@ def render():
     )
     display_side_by_side(
         "PCA Visualization (KMeans)",
-        "../clustering/graphs/pca_KMeans_BoW.png",
-        "../clustering/graphs/pca_KMeans_TF-IDF.png",
+        "https://storage.googleapis.com/sentimentann/graphs/pca_KMeans_BoW.png",
+        "https://storage.googleapis.com/sentimentann/graphs/pca_KMeans_TF-IDF.png",
         """
         BoW clusters were compact and visibly separate. TF-IDF clusters overlapped, suggesting lower clarity.
         Both failed to produce meaningful sentiment clusters.
@@ -57,8 +57,8 @@ def render():
     st.markdown("## Agglomerative Clustering Results")
     display_side_by_side(
         "Confusion Matrix (Agglomerative)",
-        "../clustering/graphs/confusion_Agglomerative_BoW.png",
-        "../clustering/graphs/confusion_Agglomerative_TF-IDF.png",
+        "https://storage.googleapis.com/sentimentann/graphs/confusion_Agglomerative_BoW.png",
+        "https://storage.googleapis.com/sentimentann/graphs/confusion_Agglomerative_TF-IDF.png",
         """
         Similar to KMeans, predictions were biased toward a single class.
         Agglomerative clustering did not perform well under class imbalance.
@@ -66,8 +66,8 @@ def render():
     )
     display_side_by_side(
         "PCA Visualization (Agglomerative)",
-        "../clustering/graphs/pca_Agglomerative_BoW.png",
-        "../clustering/graphs/pca_Agglomerative_TF-IDF.png",
+        "https://storage.googleapis.com/sentimentann/graphs/pca_Agglomerative_BoW.png",
+        "https://storage.googleapis.com/sentimentann/graphs/pca_Agglomerative_TF-IDF.png",
         """
         BoW clusters showed better segmentation. TF-IDF produced noisy and mixed clusters.
         Suggests BoW is better suited for hierarchical clustering in this dataset.
@@ -79,8 +79,8 @@ def render():
     st.markdown("## DBSCAN Clustering Results")
     display_side_by_side(
         "Confusion Matrix (DBSCAN)",
-        "../clustering/graphs/confusion_DBSCAN_BoW.png",
-        "../clustering/graphs/confusion_DBSCAN_TF-IDF.png",
+        "https://storage.googleapis.com/sentimentann/graphs/confusion_DBSCAN_BoW.png",
+        "https://storage.googleapis.com/sentimentann/graphs/confusion_DBSCAN_TF-IDF.png",
         """
         DBSCAN produced highly imbalanced labels due to noise and density-based thresholds.
         It detected more structure with BoW but still clustered only the majority class effectively.
@@ -88,8 +88,8 @@ def render():
     )
     display_side_by_side(
         "PCA Visualization (DBSCAN)",
-        "../clustering/graphs/pca_DBSCAN_BoW.png",
-        "../clustering/graphs/pca_DBSCAN_TF-IDF.png",
+        "https://storage.googleapis.com/sentimentann/graphs/pca_DBSCAN_BoW.png",
+        "https://storage.googleapis.com/sentimentann/graphs/pca_DBSCAN_TF-IDF.png",
         """
         DBSCAN with BoW found clear local clusters. TF-IDF clusters were less distinct and more scattered.
         BoW continues to show better cluster separation.

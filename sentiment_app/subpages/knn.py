@@ -45,10 +45,10 @@ def render():
     Elbow curves suggest optimal `k ≈ 28–30` across all vectorizer-distance combinations.
     """
 
-    display_graph_with_inference("Elbow Curve: TF-IDF + Euclidean", "../KNN/graphs/elbow_tfidf_euclidean.png", elbow_inference)
-    display_graph_with_inference("Elbow Curve: TF-IDF + Manhattan", "../KNN/graphs/elbow_tfidf_manhattan.png", elbow_inference)
-    display_graph_with_inference("Elbow Curve: BoW + Euclidean", "../KNN/graphs/elbow_bow_euclidean.png", elbow_inference)
-    display_graph_with_inference("Elbow Curve: BoW + Manhattan", "../KNN/graphs/elbow_bow_manhattan.png", elbow_inference)
+    display_graph_with_inference("Elbow Curve: TF-IDF + Euclidean", "https://storage.googleapis.com/sentimentann/graphs/elbow_tfidf_euclidean.png", elbow_inference)
+    display_graph_with_inference("Elbow Curve: TF-IDF + Manhattan", "https://storage.googleapis.com/sentimentann/graphs/elbow_tfidf_manhattan.png", elbow_inference)
+    display_graph_with_inference("Elbow Curve: BoW + Euclidean", "https://storage.googleapis.com/sentimentann/graphs/elbow_bow_euclidean.png", elbow_inference)
+    display_graph_with_inference("Elbow Curve: BoW + Manhattan", "https://storage.googleapis.com/sentimentann/graphs/elbow_bow_manhattan.png", elbow_inference)
 
     # ============================ Confusion Matrix Observations ============================ #
     st.markdown("---")
@@ -70,10 +70,10 @@ def render():
     This suggests that **KNN is not ideal** for highly imbalanced sentiment datasets.
     """
 
-    display_graph_with_inference("Confusion Matrix: TF-IDF + Euclidean", "../KNN/graphs/confmat_tfidf_euclidean.png", cm_inference)
-    display_graph_with_inference("Confusion Matrix: TF-IDF + Manhattan", "../KNN/graphs/confmat_tfidf_manhattan.png", cm_inference)
-    display_graph_with_inference("Confusion Matrix: BoW + Euclidean", "../KNN/graphs/confmat_bow_euclidean.png", cm_inference)
-    display_graph_with_inference("Confusion Matrix: BoW + Manhattan", "../KNN/graphs/confmat_bow_manhattan.png", cm_inference)
+    display_graph_with_inference("Confusion Matrix: TF-IDF + Euclidean", "https://storage.googleapis.com/sentimentann/graphs/confmat_tfidf_euclidean.png", cm_inference)
+    display_graph_with_inference("Confusion Matrix: TF-IDF + Manhattan", "https://storage.googleapis.com/sentimentann/graphs/confmat_tfidf_manhattan.png", cm_inference)
+    display_graph_with_inference("Confusion Matrix: BoW + Euclidean", "https://storage.googleapis.com/sentimentann/graphs/confmat_bow_euclidean.png", cm_inference)
+    display_graph_with_inference("Confusion Matrix: BoW + Manhattan", "https://storage.googleapis.com/sentimentann/graphs/confmat_bow_manhattan.png", cm_inference)
 
     # ============================ Final Observations ============================ #
     st.markdown("---")

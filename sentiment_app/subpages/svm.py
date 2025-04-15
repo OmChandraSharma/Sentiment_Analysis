@@ -55,7 +55,7 @@ def render():
     - **Optimal performance at C=1.0** indicates a good trade-off between margin width and misclassification.
     """
 
-    display_graph_with_inference("C Parameter vs Accuracy", "../svm/graphs/regularization_strength.png", c_inference)
+    display_graph_with_inference("C Parameter vs Accuracy", "https://storage.googleapis.com/sentimentann/graphs/regularization_strength.png", c_inference)
 
     # ============================ Confusion Matrices ============================ #
     st.markdown("---")
@@ -74,8 +74,8 @@ def render():
     - Model biased toward predicting Class 0.
     """
 
-    display_graph_with_inference("Confusion Matrix: SVM with BoW", "../svm/graphs/svm_bow.png", cm_inference_bow)
-    display_graph_with_inference("Confusion Matrix: SVM with TF-IDF", "../svm/graphs/svm_tfidf.png", cm_inference_tfidf)
+    display_graph_with_inference("Confusion Matrix: SVM with BoW", "https://storage.googleapis.com/sentimentann/graphs/svm_bow.png", cm_inference_bow)
+    display_graph_with_inference("Confusion Matrix: SVM with TF-IDF", "https://storage.googleapis.com/sentimentann/graphs/svm_tfidf.png", cm_inference_tfidf)
 
     # ============================ Final Observations ============================ #
     st.markdown("---")

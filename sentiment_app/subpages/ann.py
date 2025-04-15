@@ -39,7 +39,7 @@ def render():
     between training and validation, suggesting **possible overfitting**. For this reason, TF-IDF was selected as the preferred 
     vectorization strategy for building a more robust ANN.
     """
-    display_graph_with_inference("TF-IDF vs BoW Accuracy, Loss, Confusion Matrix Comparison", "../ANN/graphs/vectorizer_comparison.png", v_inference)
+    display_graph_with_inference("TF-IDF vs BoW Accuracy, Loss, Confusion Matrix Comparison", "https://storage.googleapis.com/sentimentann/graphs/vectorizer_comparison.png", v_inference)
 
     # ============================ SVD Component Analysis ============================ #
     st.markdown("---")
@@ -57,8 +57,8 @@ def render():
     dimensionality and classification performance.
     """
 
-    display_graph_with_inference("Explained Variance vs. SVD Components", "../ANN/graphs/variance_extended.png", s1)
-    display_graph_with_inference("Accuracy vs. SVD Components", "../ANN/graphs/accuracy_extended.png", s2)
+    display_graph_with_inference("Explained Variance vs. SVD Components", "https://storage.googleapis.com/sentimentann/graphs/variance_extended.png", s1)
+    display_graph_with_inference("Accuracy vs. SVD Components", "https://storage.googleapis.com/sentimentann/graphs/accuracy_extended.png", s2)
     # ============================ ANN Architecture Comparison ============================ #
     st.markdown("---")
     st.markdown("## Shallow vs Deep ANN")
@@ -80,8 +80,8 @@ def render():
     **higher neuron counts**, and **dropout layers** to reduce overfitting. This complexity allows for capturing more abstract representations 
     of the input features transformed by TF-IDF and SVD.
     """
-    display_graph_with_inference("DNN Architectures: Shallow vs Deep", "../ANN/graphs/architecture.png", s5)
-    display_graph_with_inference("Training vs. Validation Accuracy (Shallow vs Deep)", "../ANN/graphs/s_d.png", s3)
+    display_graph_with_inference("DNN Architectures: Shallow vs Deep", "https://storage.googleapis.com/sentimentann/graphs/architecture.png", s5)
+    display_graph_with_inference("Training vs. Validation Accuracy (Shallow vs Deep)", "https://storage.googleapis.com/sentimentann/graphs/s_d.png", s3)
     # Display comparison metrics as a table instead of an image
     st.markdown("### Performance Metrics Comparison")
 

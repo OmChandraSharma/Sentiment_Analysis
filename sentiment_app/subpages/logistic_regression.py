@@ -20,7 +20,7 @@ def render():
     st.markdown("## Overall Performance Comparison")
     display_graph_with_inference(
     "Accuracy Comparison: BoW vs TF-IDF",
-    "../logistic_regression/graphs/feature_comparison.png",
+    "https://storage.googleapis.com/sentimentann/graphs/feature_comparison.png",
     """
     BoW shows higher accuracy in nearly all experimental setups. This makes it the more reliable choice 
     for this specific sentiment classification task, especially when performance consistency is critical.
@@ -38,7 +38,7 @@ def render():
     st.markdown("## Effect of Class Weighting")
     display_graph_with_inference(
     "Impact of Class Weighting on Accuracy",
-    "../logistic_regression/graphs/class_weight.png",
+    "https://storage.googleapis.com/sentimentann/graphs/class_weight.png",
     """
     Balanced class weights marginally improve performance, especially in minority classes.
     However, the gain is not substantial, suggesting that native class distribution is manageable.
@@ -61,7 +61,7 @@ def render():
 
     display_graph_with_inference(
     "Effect of Regularization Strength (C) on Accuracy",
-    "../logistic_regression/graphs/regularization_strength.png",
+    "https://storage.googleapis.com/sentimentann/graphs/regularization_strength.png",
     """
     Accuracy improves significantly with increasing C, peaking around C=10. Beyond that, 
     TF-IDF performance drops slightly, while BoW remains stable.
@@ -82,7 +82,7 @@ def render():
     st.markdown("## Confusion Matrix Analysis")
     display_graph_with_inference(
     "Confusion Matrix - Best BoW Model",
-    "../logistic_regression/graphs/lr_bow.png",
+    "https://storage.googleapis.com/sentimentann/graphs/lr_bow.png",
     """
     The model is more confident on Class 2 (Positive), but struggles slightly with Class 1 (Neutral).
     Overall structure shows reliable class separability.
@@ -91,7 +91,7 @@ def render():
 
     display_graph_with_inference(
         "Confusion Matrix - Best TF-IDF Model",
-        "../logistic_regression/graphs/lr_tfidf.png",
+        "https://storage.googleapis.com/sentimentann/graphs/lr_tfidf.png",
         """
         Similar trends as BoW, but Class 1 performance (Neutral) dips more sharply.
         Suggests BoW handles ambiguous cases better.

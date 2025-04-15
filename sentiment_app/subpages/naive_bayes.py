@@ -48,11 +48,11 @@ def render():
     
 
     # ============================ Models & Reports ============================ #
-    display_model_metrics("Naive Bayes from scratch with Tokenization", 0.8134, report_data1, "../naive_bayes/graphs/confusionmatrix_scratchmodel.png")
-    display_model_metrics("Naive Bayes using TF-IDF", 0.8112, report_data2, "../naive_bayes/graphs/confusion-matrix-tfidf.png")
+    display_model_metrics("Naive Bayes from scratch with Tokenization", 0.8134, report_data1, "https://storage.googleapis.com/sentimentann/graphs/confusionmatrix_scratchmodel.png")
+    display_model_metrics("Naive Bayes using TF-IDF", 0.8112, report_data2, "https://storage.googleapis.com/sentimentann/graphs/confusion-matrix-tfidf.png")
     
     st.markdown("## Accuracy comaparison using Test and Validation")
-    st.image("../naive_bayes/graphs/accuracy_comparision.png", width=500)
+    st.image("https://storage.googleapis.com/sentimentann/graphs/accuracy_comparision.png", width=500)
 
 
     # ============================ Final Observations ============================ #
@@ -83,10 +83,10 @@ def render():
     s1 = "As depth increases, both feature sets benefit from greater model complexity. However, BoW consistently outperforms TF-IDF — particularly beyond the optimal depth — suggesting that raw term frequencies preserve important sentiment indicators that TF-IDF suppresses. The performance plateau beyond depth 10 indicates diminishing returns, with potential risks of overfitting at higher depths. Therefore, a max depth of 10–15 appears optimal for generalization."
 
     
-    display_graph_with_inference("Accuracy vs. K ", "../naive_bayes/graphs/selectkbest_kcomparisions.png",s1)
+    display_graph_with_inference("Accuracy vs. K ", "https://storage.googleapis.com/sentimentann/graphs/selectkbest_kcomparisions.png",s1)
 
     st.markdown("## Confusion Matrix for K = 5000")
-    st.image("../naive_bayes/graphs/confusionmatrix_tf-idf_with_pca.png", width=500)
+    st.image("https://storage.googleapis.com/sentimentann/graphs/confusionmatrix_tf-idf_with_pca.png", width=500)
     # display_graph_with_inference("Accuracy vs. Min Samples Split", "../decision_tree/graphs/min_sample.png",s2)
     # display_graph_with_inference("Accuracy vs. Min Samples Leaf", "../decision_tree/graphs/min_sample_leaf.png",s3)
     # display_graph_with_inference("Accuracy vs. Criterion", "../decision_tree/graphs/criterion.png",s4)

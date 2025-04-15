@@ -40,7 +40,7 @@ def render():
     """
     display_graph_with_inference(
         "Actual vs Predicted Sentiment",
-        "../linear_regression/plots/actual_vs_predicted.png",
+        "https://storage.googleapis.com/sentimentann/plots/actual_vs_predicted.png",
         scatter_inference
     )
 
@@ -51,7 +51,7 @@ def render():
     """
     display_graph_with_inference(
         "Residuals Histogram",
-        "../linear_regression/plots/residuals_histogram.png",
+        "https://storage.googleapis.com/sentimentann/plots/residuals_histogram.png",
         residual_hist_inference
     )
 
@@ -62,7 +62,7 @@ def render():
     """
     display_graph_with_inference(
         "Residuals Across Samples",
-        "../linear_regression/plots/residuals_lineplot.png",
+        "https://storage.googleapis.com/sentimentann/plots/residuals_lineplot.png",
         residual_line_inference
     )
 

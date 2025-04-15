@@ -90,10 +90,10 @@ def render():
     
 
     st.title("Without SVD Training")
-    display_model_metrics("Decision Tree using TF-IDF",0.7719 , report_dataa, "../decision_tree/graphs/decision_tree_tfidf.JPG")
-    display_model_metrics("Decision Tree using BOW",0.7706 , report_datab, "../decision_tree/graphs/decision_tree_bow.JPG")
-    display_model_metrics("Random Forest using TF-IDF",0.8201 , report_datac, "../decision_tree/graphs/random_forest_tfidf.JPG")
-    display_model_metrics("Random Forest using BOW", 0.8157, report_datad, "../decision_tree/graphs/random_forest_bow.JPG")
+    display_model_metrics("Decision Tree using TF-IDF",0.7719 , report_dataa, "https://storage.googleapis.com/sentimentann/graphs/decision_tree_tfidf.JPG")
+    display_model_metrics("Decision Tree using BOW",0.7706 , report_datab, "https://storage.googleapis.com/sentimentann/graphs/decision_tree_bow.JPG")
+    display_model_metrics("Random Forest using TF-IDF",0.8201 , report_datac, "https://storage.googleapis.com/sentimentann/graphs/random_forest_tfidf.JPG")
+    display_model_metrics("Random Forest using BOW", 0.8157, report_datad, "https://storage.googleapis.com/sentimentann/graphs/random_forest_bow.JPG")
 
     st.markdown("---")
     # st.markdown("##  Final Observations & Model Recommendation")
@@ -110,10 +110,10 @@ def render():
     st.title("With SVD Training")
 
     # ============================ Models & Reports ============================ #
-    display_model_metrics("Decision Tree using TF-IDF", 0.5769230769230769, report_data1, "../decision_tree/graphs/dt_tfidf.png")
-    display_model_metrics("Decision Tree using BOW", 0.5769230769230769, report_data2, "../decision_tree/graphs/dt_bow.png")
-    display_model_metrics("Random Forest using TF-IDF", 0.5769230769230769, report_data3, "../decision_tree/graphs/rf_tfidf.png")
-    display_model_metrics("Random Forest using BOW", 0.6826923076923077, report_data4, "../decision_tree/graphs/rf_bow.png")
+    display_model_metrics("Decision Tree using TF-IDF", 0.5769230769230769, report_data1, "https://storage.googleapis.com/sentimentann/graphs/dt_tfidf.png")
+    display_model_metrics("Decision Tree using BOW", 0.5769230769230769, report_data2, "https://storage.googleapis.com/sentimentann/graphs/dt_bow.png")
+    display_model_metrics("Random Forest using TF-IDF", 0.5769230769230769, report_data3, "https://storage.googleapis.com/sentimentann/graphs/rf_tfidf.png")
+    display_model_metrics("Random Forest using BOW", 0.6826923076923077, report_data4, "https://storage.googleapis.com/sentimentann/graphs/rf_bow.png")
 
     # ============================ Final Observations ============================ #
     # st.markdown("---")
@@ -149,10 +149,10 @@ def render():
     s4 = "BoW consistently outperforms TF-IDF because it better preserves frequent, sentiment-heavy words. Entropy performs slightly better than Gini as a splitting criterion, likely because it captures subtle signal strengths in the sparse, high-dimensional feature space. The differences are not drastic, but they align with how the underlying algorithms handle data distribution and feature importance."
 
 
-    display_graph_with_inference("Accuracy vs. Max Depth", "../decision_tree/graphs/max_depth.png",s1)
-    display_graph_with_inference("Accuracy vs. Min Samples Split", "../decision_tree/graphs/min_sample.png",s2)
-    display_graph_with_inference("Accuracy vs. Min Samples Leaf", "../decision_tree/graphs/min_sample_leaf.png",s3)
-    display_graph_with_inference("Accuracy vs. Criterion", "../decision_tree/graphs/criterion.png",s4)
+    display_graph_with_inference("Accuracy vs. Max Depth", "https://storage.googleapis.com/sentimentann/graphs/max_depth.png",s1)
+    display_graph_with_inference("Accuracy vs. Min Samples Split", "https://storage.googleapis.com/sentimentann/graphs/min_sample.png",s2)
+    display_graph_with_inference("Accuracy vs. Min Samples Leaf", "https://storage.googleapis.com/sentimentann/graphs/min_sample_leaf.png",s3)
+    display_graph_with_inference("Accuracy vs. Criterion", "https://storage.googleapis.com/sentimentann/graphs/criterion.png",s4)
     
     st.markdown("---")
     st.markdown("## Why the Model Performs Better Without SVD")
