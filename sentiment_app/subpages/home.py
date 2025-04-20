@@ -104,9 +104,9 @@ def render():
     # Dummy performance data
     performance_data = pd.DataFrame({
         'Model': ['ANN', 'Random Forest', 'K Means', 'KNN', 'Logistic Regression', 'Linear Regression', 'Naive Bayes', 'SVM'],
-        'Precision': [0.83, 0.84, 0.55, 0.81, 0.83, 0.74, 0.79, 0.85],
-        'Recall': [0.84, 0.95, 0.58, 0.80, 0.82, 0.75, 0.78, 0.84],
-        'F1 Score': [0.84, 0.89, 0.56, 0.80, 0.82, 0.74, 0.78, 0.84]
+        'Precision': [0.83, 0.84, 0.76, 0.79, 0.83, 0.74, 0.8, 0.92],
+        'Recall': [0.84, 0.95, 0.58, 0.80, 0.82, 0.75, 0.81, 0.89],
+        'F1 Score': [0.84, 0.89, 0.56, 0.80, 0.82, 0.74, 0.8, 0.84]
     })
 
     heatmap_data = performance_data.set_index('Model')
