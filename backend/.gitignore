@@ -1,0 +1,6 @@
+api_env
+models
+build-context.tar.gz
+Dockerfile
+creds
+__pycache__

@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+numpy==1.26.4
+google-cloud-storage
+tensorflow==2.16.1
+joblib
+scikit-learn
+pandas
+nltk
