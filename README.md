@@ -1,4 +1,4 @@
-# Sentiment Analysis Using Classical Machine Learning
+# Sentiment Analysis Using Classical Machine Learning Techniques
 
 **Live App**: [Streamlit Demo](https://omchandrasharma-sentiment-analysis-sentiment-appapp-p762tr.streamlit.app/)  
 **Dataset**: [Kaggle Dataset](https://www.kaggle.com/datasets/abhi8923shriv/sentiment-analysis-dataset/data)  
